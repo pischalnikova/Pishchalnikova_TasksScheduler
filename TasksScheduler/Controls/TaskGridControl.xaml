@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="TasksScheduler.Controls.TaskGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:comm="clr-namespace:TasksScheduler">
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="comm:Commands.TaskAdd"
+                    Executed="Add_Click"/>
+        <CommandBinding Command="comm:Commands.TaskEdit"
+            Executed="Edit_Click"/>
+        <CommandBinding Command="comm:Commands.TaskDelete"
+                    Executed="Delete_Click"/>
+        <CommandBinding Command="comm:Commands.SaveJson" Executed="SaveJson_Click"/>
+        <CommandBinding Command="comm:Commands.LoadJson" Executed="LoadJson_Click"/>
+        <CommandBinding Command="comm:Commands.SaveXml" Executed="SaveXml_Click"/>
+        <CommandBinding Command="comm:Commands.LoadXml" Executed="LoadXml_Click"/>
+    </UserControl.CommandBindings>
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        
+
+        <!-- Поиск и фильтр -->
+        <StackPanel Orientation="Horizontal">
+
+            <TextBox x:Name="tbSearch"
+                Width="250"
+                Margin="0,0,10,0"/>
+
+            <ComboBox x:Name="cbState"
+                Width="150"
+                Margin="0,0,10,0"/>
+
+            <Button Content="Поиск"
+                Width="100"
+                Click="Search_Click"/>
+
+            <Button Content="Сброс"
+                Width="100"
+                Margin="10,0,0,0"
+                Click="Reset_Click"/>
+
+        </StackPanel>
+
+        <!-- Таблица -->
+        <DataGrid x:Name="tasksGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Название"
+                                    Binding="{Binding TaskName}"/>
+
+                <DataGridTextColumn Header="Описание"
+                                    Binding="{Binding TaskDescription}"/>
+
+                <DataGridTextColumn Header="Приоритет"
+                                    Binding="{Binding Priority}"/>
+
+                <DataGridTextColumn Header="Срок"
+                                    Binding="{Binding DeadlineDate}"/>
+
+                <DataGridTextColumn Header="Статус"
+                                    Binding="{Binding State}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,10">
+
+            <Button Content="Добавить"
+                    Width="100"
+                    Margin="5"
+                    Click="Add_Click"/>
+
+            <Button Content="Изменить"
+                    Width="100"
+                    Margin="5"
+                    Click="Edit_Click"/>
+
+            <Button Content="Удалить"
+                    Width="100"
+                    Margin="5"
+                    Click="Delete_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

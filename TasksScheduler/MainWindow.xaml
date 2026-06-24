@@ -1,0 +1,50 @@
+﻿<Window x:Class="TasksScheduler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:TasksScheduler.Controls"
+        xmlns:comm="clr-namespace:TasksScheduler"
+        Title="Планировщик задач"
+        Height="600"
+        Width="1000">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+
+            <MenuItem Header="Файл">
+
+                <MenuItem Header="Сохранить JSON"
+              Command="{x:Static comm:Commands.SaveJson}"/>
+
+                <MenuItem Header="Загрузить JSON"
+              Command="{x:Static comm:Commands.LoadJson}"/>
+
+                <Separator/>
+
+                <MenuItem Header="Сохранить XML"
+              Command="{x:Static comm:Commands.SaveXml}"/>
+
+                <MenuItem Header="Загрузить XML"
+              Command="{x:Static comm:Commands.LoadXml}"/>
+
+            </MenuItem>
+
+
+            <MenuItem Header="Задача">
+
+                <MenuItem Header="Создать"
+              Command="{x:Static comm:Commands.TaskAdd}"/>
+
+                <MenuItem Header="Изменить"
+              Command="{x:Static comm:Commands.TaskEdit}"/>
+
+                <MenuItem Header="Удалить"
+              Command="{x:Static comm:Commands.TaskDelete}"/>
+
+            </MenuItem>
+
+        </Menu>
+
+        <uc:TaskGridControl/>
+
+    </DockPanel>
+</Window>
